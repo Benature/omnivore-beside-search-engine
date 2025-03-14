@@ -132,14 +132,16 @@
                     `;
                     resultsDiv.append(resultHTML);
                 });
-                resultsDiv.append(`
-                    <div class="b_algo" data-omnisearch-result style="padding: 10px; margin-bottom: 20px;">
-                        <h2 class="b_attribution" style="margin-bottom: 5px;">
-                            <a href="${url_web}/home?q=${query}" target="_blank"><span style="vertical-align: middle; margin-right: 0.5em;"></span>
-                              More (${data.data.search.edges.length}) ...</a>
-                        </h2>
-                    </div>
-                `)
+                if (edges.length) {
+                    resultsDiv.append(`
+                        <div class="b_algo" data-omnisearch-result style="padding: 10px; margin-bottom: 20px;">
+                            <h2 class="b_attribution" style="margin-bottom: 5px;">
+                                <a href="${url_web}/home?q=${query}" target="_blank"><span style="vertical-align: middle; margin-right: 0.5em;"></span>
+                                More (${data.data.search.edges.length}) ...</a>
+                            </h2>
+                        </div>
+                    `)
+                }
             },
             onerror: function () {
                 const span = $(`#${loadingSpanId}`);
