@@ -184,7 +184,7 @@
             alignItems: "center",
             justifyContent: "space-between",
         });
-        const resultsHeader = $(`<img src="https://docs.omnivore.app/favicon.ico" alt="Icon" style="width: 30px; height: 30px; margin-right: 10px;"><h2>Omnivore Search Results</h2>`);
+        const resultsHeader = $(`<h2><img src="https://docs.omnivore.app/favicon.ico" alt="Icon" style="width: 15px; height: 15px; margin-right: 10px;">Omnivore Search Results</h2>`);
         headerContainer.append(resultsHeader, settingsButton); // Append both the header and the button to the container
         $(sidebarSelector).prepend(headerContainer); // Prepend the container instead of the header
     });
