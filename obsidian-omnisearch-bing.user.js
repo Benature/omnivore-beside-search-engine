@@ -110,7 +110,8 @@
             }),
             onload: function (response) {
                 const data = JSON.parse(response.responseText);
-                const edges = data.data.search.edges
+                const edges = data.data.search.edges;
+                const resultsNum = edges.length;
                 removeLoadingLabel(edges.length > 0);
                 edges.splice(nbResults);
                 const resultsDiv = $(`#${resultsDivId}`);
@@ -132,12 +133,12 @@
                     `;
                     resultsDiv.append(resultHTML);
                 });
-                if (edges.length) {
+                if (resultsNum > 0) {
                     resultsDiv.append(`
                         <div class="b_algo" data-omnisearch-result style="padding: 10px; margin-bottom: 20px;">
                             <h2 class="b_attribution" style="margin-bottom: 5px;">
                                 <a href="${url_web}/home?q=${query}" target="_blank"><span style="vertical-align: middle; margin-right: 0.5em;"></span>
-                                More (${data.data.search.edges.length}) ...</a>
+                                More (${resultsNum}) ...</a>
                             </h2>
                         </div>
                     `)
