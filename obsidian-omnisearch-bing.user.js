@@ -1,6 +1,6 @@
 "use strict";
 // ==UserScript==
-// @name         Omnivore in Bing
+// @name         Omnivore Search in Bing
 // @version      0.1
 // @description  Injects Omnivore notes into Bing search results
 // @author       Benature
@@ -33,7 +33,7 @@
     // @ts-ignore
     const gmc = new GM_config({
         id: "OmnivoreBing",
-        title: "Omnivore in Bing - Configuration",
+        title: "Omnivore Search in Bing - Configuration",
         fields: {
             apiKey: {
                 label: "API key",
@@ -123,7 +123,7 @@
                     const description = node.description.slice(0, 140).replace(/<br\s*\/?>/gi, " ");
                     const resultHTML = `
                         <div class="b_algo" data-omnisearch-result style="padding: 10px; border-bottom: 1px solid #ccc;">
-                            <h2 class="b_attribution" style="margin-bottom: 5px;">
+                            <h2 class="b_attribution" style="margin-bottom: 0px;">
                                 <a href="${node.url}" target="_blank"><span style="vertical-align: middle; margin-right: 0.5em;"></span>
                                   ${node.title}</a>
                               <a href="${url_web}/${username}/${node.slug}"> 🔗 </a>
@@ -187,7 +187,26 @@
         searchOmnivore(); // Make an initial call, just to avoid an improbable race condition
         console.log("Loaded Omnivore injector");
         // Add a button to show settings dialog
-        const settingsButton = $("<button>Settings</button>").css({
+        const settingsButton = $(`
+            <button 
+                style="
+                background-color: #fcebaa;
+                color: #667380;
+                padding: 5px 5px;
+                border: none;
+                border-radius: 5px;
+                font-size: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                "
+                onmouseover="this.style.backgroundColor='#45a049'"
+                onmouseout="this.style.backgroundColor='#4CAF50'"
+                onmousedown="this.style.backgroundColor='#3d8b40'"
+                onmouseup="this.style.backgroundColor='#45a049'"
+            >
+                Settings
+            </button>`
+        ).css({
             marginRight: "10px",
         }).click(showSettingsDialog);
         const headerContainer = $("<div></div>").css({
